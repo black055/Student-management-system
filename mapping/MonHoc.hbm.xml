@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class catalog="QuanLySinhVien" name="pojo.MonHoc" table="monhoc">
+      <id name="maMH" type="string">
+          <column length="10" name="maMH"/>
+          <generator class="assigned"/>
+      </id>
+      <property name="tenMH" type="string">
+          <column length="45" name="tenMH"/>
+      </property>
+      <property name="phongHoc" type="string">
+          <column length="10" name="phongHoc"/>
+      </property>
+      
+      <many-to-one class="pojo.Lop" name="lop" fetch="select">
+            <column name="maLop" not-null="true"/>
+      </many-to-one>
+      
+      <set inverse="false" name="dsSV" table="dkmh">
+          <key>
+              <column length="10" name="maMH" not-null="true"/>
+          </key>
+          <many-to-many entity-name="pojo.SinhVien">
+              <column length="8" name="maSV" not-null="true"/>
+          </many-to-many>
+      </set>
+  	</class>
+</hibernate-mapping>

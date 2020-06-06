@@ -8,19 +8,18 @@ Create table SinhVien (
 	tenSV nvarchar(30),
 	gioiTinh nvarchar(10),
 	cmnd nvarchar(12),
-	maLop int,
+	maLop nvarchar(10),
     primary key (maSV)
 );
 
 Create table Lop (
-	tenLop nvarchar(10),
-	maLop int,
+	maLop nvarchar(10),
     primary key(maLop)
 );
 
 Create table MonHoc (
 	tenMH nvarchar(45),
-	maLop int,
+	maLop nvarchar(10),
 	maMH nvarchar(10),
 	phongHoc nvarchar(10),
     primary key(maMH)
@@ -37,11 +36,10 @@ Create table dkmh (
 );
 
 Create table TaiKhoan (
-	maTK int,
 	tenTK nvarchar(15),
 	matKhau nvarchar(15),
-	GiaoVu bit,
-    primary key (maTK)
+	giaoVu bit,
+    primary key (tenTK)
 );
 
 /***** Create Foreign Key *****/

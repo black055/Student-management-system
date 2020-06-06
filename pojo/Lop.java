@@ -12,29 +12,24 @@ import java.util.Set;
  * @author DELL
  */
 public class Lop {
-    private String tenLop;
-    private int maLop;
+    private String maLop;
     private Set<SinhVien> dsSV;
     private Set<MonHoc> dsMH;
     /*--------- Contructor ---------*/
     public Lop() {
     }
-    public Lop(int maLop) {
+    public Lop(String maLop) {
         this.maLop = maLop;
     }
-    public Lop(int maLop, String tenLop,Set<SinhVien> dsSV, Set<MonHoc> dsMH) {
+    public Lop(String maLop, Set<SinhVien> dsSV, Set<MonHoc> dsMH) {
         this.maLop = maLop;
-        this.tenLop = tenLop;
         this.dsSV = dsSV;
         this.dsMH = dsMH;
     }
     
     /*--------- Getter/Setter ---------*/
-    public int getMaLop() {
+    public String getMaLop() {
         return this.maLop;
-    }
-    public String getTenLop() {
-        return this.tenLop;
     }
     public Set<SinhVien> getDsSV() {
         return this.dsSV;
@@ -42,11 +37,8 @@ public class Lop {
     public Set<MonHoc> getDsMH() {
         return this.dsMH;
     }
-    public void setMaLop(int maLop) {
+    public void setMaLop(String maLop) {
         this.maLop = maLop;
-    }
-    public void setTenLop(String tenLop) {
-        this.tenLop = tenLop;
     }
     public void setDsSV(Set<SinhVien> dsSV) {
         this.dsSV = dsSV;
