@@ -10,5 +10,7 @@
     <mapping resource="mapping/MonHoc.hbm.xml"/>
     <mapping resource="mapping/Lop.hbm.xml"/>
     <mapping resource="mapping/SinhVien.hbm.xml"/>
+    <mapping resource="mapping/TaiKhoan.hbm.xml"/>
+    <mapping resource="mapping/BangDiem.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

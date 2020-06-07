@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <class catalog="QuanLySinhVien" name="pojo.TaiKhoan" table="TaiKhoan">
+      <id name="tenTK" type="string">
+            <column length="15" name="tenTK"/>
+            <generator class="assigned"/>
+      </id>
+      
+      <property name="matKhau" type="string">
+            <column name="matKhau"/>
+      </property>
+      <property name="giaoVu" type="boolean">
+            <column name="giaoVu"/>
+      </property>
+  </class>
+</hibernate-mapping>
