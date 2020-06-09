@@ -1,9 +1,12 @@
 package dao;
 
+import java.util.List;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import pojo.SinhVien;
 import util.HibernateUtil;
@@ -14,6 +17,21 @@ import util.HibernateUtil;
  * @Description ...
  */
 public class SinhVienDAO {
+	public static List<SinhVien> danhSachSinhVien() {
+		List<SinhVien> ds = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			String hql = "select sv from SinhVien sv";
+			Query qr = session.createQuery(hql);
+			ds = qr.list();
+		} catch (HibernateException ex) {
+			System.err.println(ex);
+		} finally {
+			session.close();
+		}
+		return ds;
+	}
+	
 	public static SinhVien thongTinSinhVien(String maSV) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		SinhVien sv = null;

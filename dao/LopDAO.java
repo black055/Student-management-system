@@ -1,10 +1,13 @@
 package dao;
 
 
+import java.util.List;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import pojo.Lop;
 import util.HibernateUtil;
@@ -15,6 +18,21 @@ import util.HibernateUtil;
  * @Description ...
  */
 public class LopDAO {
+	public static List<Lop> danhSachLop() {
+		List<Lop> ds = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			String hql = "select lop from Lop lop";
+			Query qr = session.createQuery(hql);
+			ds = qr.list();
+		} catch (HibernateException ex) {
+			System.err.println(ex);
+		} finally {
+			session.close();
+		}
+		return ds;
+	}
+	
 	public static Lop thongTinLop(String maLop) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Lop lop = null;
