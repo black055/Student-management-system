@@ -10,16 +10,19 @@ import java.io.Serializable;
  */
 public class BangDiem implements Serializable {
 	private String maSV, maMH;
-	private float diemGK, diemCK, diemKhac, diemTong;
+	private Float diemGK, diemCK, diemKhac, diemTong;
 	
 	public BangDiem() {
-		
 	}
 	public BangDiem(String maSV, String maMH) {
 		this.maSV = maSV;
 		this.maMH = maMH;
+		this.diemGK = (float) 0;
+		this.diemCK = (float) 0;
+		this.diemKhac = (float) 0;
+		this.diemTong = (float) 0;
 	}
-	public BangDiem(String maSV, String maMH, float diemGK, float diemCK, float diemKhac, float diemTong) {
+	public BangDiem(String maSV, String maMH, Float diemGK, Float diemCK, Float diemKhac, Float diemTong) {
 		this.maSV = maSV;
 		this.maMH = maMH;
 		this.diemGK = diemGK;
@@ -33,16 +36,16 @@ public class BangDiem implements Serializable {
 	public String getMaMH() {
 		return this.maMH;
 	}
-	public float getDiemGK() {
+	public Float getDiemGK() {
 		return this.diemGK;
 	}
-	public float getDiemCK() {
+	public Float getDiemCK() {
 		return this.diemCK;
 	}
-	public float getDiemKhac() {
+	public Float getDiemKhac() {
 		return this.diemKhac;
 	}
-	public float getDiemTong() {
+	public Float getDiemTong() {
 		return this.diemTong;
 	}
 	public void setMaSV(String maSV) {
@@ -51,16 +54,16 @@ public class BangDiem implements Serializable {
 	public void setMaMH(String maMH) {
 		this.maMH = maMH;
 	}
-	public void setDiemGK(float diemGK) {
+	public void setDiemGK(Float diemGK) {
 		this.diemGK = diemGK;
 	}
-	public void setDiemCK(float diemCK) {
+	public void setDiemCK(Float diemCK) {
 		this.diemCK = diemCK;
 	}
-	public void setDiemKhac(float diemKhac) {
+	public void setDiemKhac(Float diemKhac) {
 		this.diemKhac = diemKhac;
 	}
-	public void setDiemTong(float diemTong) {
+	public void setDiemTong(Float diemTong) {
 		this.diemTong = diemTong;
 	}
 }

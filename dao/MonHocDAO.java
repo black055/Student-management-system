@@ -15,12 +15,15 @@ import util.HibernateUtil;
  * @Description ...
  */
 public class MonHocDAO {
+	
 	public static MonHoc thongTinMonHoc(String maMH) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		MonHoc mh = null;
 		try {
 			mh = (MonHoc) session.get(MonHoc.class, maMH);
-			Hibernate.initialize(mh.getDsSV());
+			if (mh != null) {
+				Hibernate.initialize(mh.getDsSV());
+			}
 		} catch (HibernateException ex ) {
 			System.err.println(ex.getMessage());
 		} finally {

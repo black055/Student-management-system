@@ -37,7 +37,9 @@ public class SinhVienDAO {
 		SinhVien sv = null;
 		try {
 			sv = (SinhVien) session.get(SinhVien.class, maSV);
-			Hibernate.initialize(sv.getDsMH());
+			if (sv != null) {
+				Hibernate.initialize(sv.getDsMH());
+			}
 		} catch (HibernateException ex) {
 			System.err.println(ex.getMessage());
 		} finally {

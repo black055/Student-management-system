@@ -38,8 +38,10 @@ public class LopDAO {
 		Lop lop = null;
 		try  {
 			lop = (Lop) session.get(Lop.class, maLop);
-			Hibernate.initialize(lop.getDsMH());
-			Hibernate.initialize(lop.getDsSV());
+			if (lop != null) {
+				Hibernate.initialize(lop.getDsMH());
+				Hibernate.initialize(lop.getDsSV());
+			}
 		} catch (HibernateException ex) {
 			System.err.println(ex.getMessage());
 		} finally {
