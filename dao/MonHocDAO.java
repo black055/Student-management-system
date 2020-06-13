@@ -1,10 +1,13 @@
 package dao;
 
 
+import java.util.List;
+
 import org.hibernate.Hibernate;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import pojo.MonHoc;
 import util.HibernateUtil;
@@ -16,6 +19,23 @@ import util.HibernateUtil;
  */
 public class MonHocDAO {
 	
+	public static List<MonHoc> monHocChuaDangKy(String maSV) {
+		List<MonHoc> ds = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			String hql = "select mh from MonHoc mh where not exists (";
+			hql += "from BangDiem bd where bd.maMH = mh.maMH and bd.maSV = :maSV )";
+			Query qr = session.createQuery(hql);
+			qr.setParameter("maSV", maSV);
+			ds = qr.list();
+		} catch (HibernateException ex) {
+			System.err.println(ex.getMessage());
+		} finally {
+			session.close();
+		}
+		return ds;
+	}
+	
 	public static MonHoc thongTinMonHoc(String maMH) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		MonHoc mh = null;
@@ -24,7 +44,7 @@ public class MonHocDAO {
 			if (mh != null) {
 				Hibernate.initialize(mh.getDsSV());
 			}
-		} catch (HibernateException ex ) {
+		} catch (HibernateException ex) {
 			System.err.println(ex.getMessage());
 		} finally {
 			session.close();

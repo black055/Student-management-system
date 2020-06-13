@@ -4,33 +4,21 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import view.FrameController;
-import view.SinhVien.PanelSinhVien;
+import view.Lop.LopTab;
 import view.SinhVien.SinhVienTab;
-import view.SinhVien.ThemSVTab;
-import view.SinhVien.XemDiemTab;
 
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.Color;
-import javax.swing.BoxLayout;
-import javax.swing.JDesktopPane;
 
-import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.UIManager;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
@@ -69,6 +57,10 @@ public class Main extends JFrame {
 		
 	}
 
+	public static JPanel getMainPanel() {
+		return mainPanel;
+	}
+	
 	public static void setMainPanel(JPanel newMainPanel) {
 		mainContainer.remove(mainPanel);
 		mainPanel = newMainPanel;
@@ -156,6 +148,7 @@ public class Main extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
 				lopDb.setBackground(Color.CYAN);
+				setMainPanel(new LopTab());
 			}
 		});
 		

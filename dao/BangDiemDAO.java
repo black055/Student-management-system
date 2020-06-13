@@ -64,4 +64,23 @@ public class BangDiemDAO {
 		}
 		return true;
 	}
+	
+	public static boolean xoaBangDiem(BangDiem bd) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		if (BangDiemDAO.thongTinBangDiem(bd.getMaSV(), bd.getMaMH()) == null) {
+			return false;
+		}
+		Transaction trans = null;
+		try {
+			trans = session.beginTransaction();
+			session.delete(bd);
+			trans.commit();
+		} catch (HibernateException ex) {
+			trans.rollback();
+			System.err.println(ex.getMessage());
+		} finally {
+			session.close();
+		}
+		return true;
+	}
 }

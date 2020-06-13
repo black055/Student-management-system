@@ -1,7 +1,6 @@
 package view.SinhVien;
 
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -13,11 +12,7 @@ import QuanLySinhVien.MainClass.Main;
 import dao.BangDiemDAO;
 import dao.LopDAO;
 import dao.SinhVienDAO;
-import pojo.BangDiem;
-import pojo.Lop;
-import pojo.MonHoc;
-import pojo.SinhVien;
-import view.FrameController;
+import pojo.*;
 
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
@@ -27,14 +22,10 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * view.SinhVien

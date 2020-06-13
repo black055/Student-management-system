@@ -138,11 +138,29 @@ public class SinhVienTab extends JPanel {
 					.addComponent(sp, GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
 		);
 		center.setLayout(gl_center);
+		
+		JButton btnDKHP = new JButton("Đăng kí học phần");
+		btnDKHP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.setMainPanel(new DKHPTab());
+			}
+		});
+		btnDKHP.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JButton btnHuyHP = new JButton("Hủy học phần");
+		btnHuyHP.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.setMainPanel(new HuyHPTab());
+			}
+		});
+		btnHuyHP.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_buttons = new GroupLayout(buttons);
 		gl_buttons.setHorizontalGroup(
 			gl_buttons.createParallelGroup(Alignment.LEADING)
 				.addComponent(btnThemSV, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
 				.addComponent(btnXemDiem, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+				.addComponent(btnDKHP, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+				.addComponent(btnHuyHP, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
 		);
 		gl_buttons.setVerticalGroup(
 			gl_buttons.createParallelGroup(Alignment.LEADING)
@@ -151,11 +169,14 @@ public class SinhVienTab extends JPanel {
 					.addComponent(btnThemSV, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addGap(36)
 					.addComponent(btnXemDiem, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(297))
+					.addGap(29)
+					.addComponent(btnDKHP, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
+					.addGap(28)
+					.addComponent(btnHuyHP, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+					.addGap(177))
 		);
 		buttons.setLayout(gl_buttons);
 		setLayout(groupLayout);
 
 	}
-
 }

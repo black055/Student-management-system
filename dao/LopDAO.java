@@ -68,4 +68,18 @@ public class LopDAO {
 		}
 		return true;
 	}
+	
+	public static void themHoacCapNhat(Lop lop) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction trans = null;
+		try {
+			trans = session.beginTransaction();
+			session.saveOrUpdate(lop);
+			trans.commit();
+		} catch (HibernateException ex) {
+			System.err.println(ex.getMessage());
+		} finally {
+			session.close();
+		}
+	}
 }

@@ -2,6 +2,24 @@ package view.SinhVien;
 
 import javax.swing.JPanel;
 
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Set;
+
+import javax.swing.BoxLayout;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.EmptyBorder;
+
 import QuanLySinhVien.MainClass.Main;
 import dao.BangDiemDAO;
 import dao.MonHocDAO;
@@ -10,40 +28,15 @@ import pojo.BangDiem;
 import pojo.MonHoc;
 import pojo.SinhVien;
 
-import java.awt.GridBagLayout;
-import java.awt.BorderLayout;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-
-import java.awt.Insets;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.List;
-import java.util.Set;
-import java.awt.event.ActionEvent;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.Component;
-import javax.swing.border.TitledBorder;
-import javax.swing.border.EmptyBorder;
-
 /**
  * view.SinhVien
  * @Created by DELL - StudentID: 18120652
- * @Date Jun 10, 2020 - 10:45:20 PM 
+ * @Date Jun 12, 2020 - 2:22:40 PM 
  * @Description ...
  */
-public class XemDiemTab extends JPanel {
-	
-	private JButton btnTraCuu = new JButton("Tra cứu điểm");
+public class DKHPTab extends JPanel {
+
+	private JButton btnDangKy = new JButton("Đăng ký");
 	private JButton btnQuayVe = new JButton("Quay về");
 	
 	private String studentId;
@@ -53,23 +46,24 @@ public class XemDiemTab extends JPanel {
 	 * Create the panel.
 	 */
 	
-	private String[] getCoursesList(String selectedStudent) {
+	private String[] getAvailableCoursesList(String selectedStudent) {
 		selectedStudent = selectedStudent.split(" - ")[0];
-		Set<MonHoc> dsMH = SinhVienDAO.thongTinSinhVien(selectedStudent).getDsMH();
-		String[] courseList = new String[dsMH.size() + 1];
+		
+		List<MonHoc> allCourses = MonHocDAO.monHocChuaDangKy(selectedStudent);
+		String[] courseList = new String[allCourses.size()+ 1];
 		courseList[0] = "------------------------------------------------------------------------------";
 		int index = 1;
-		for (MonHoc temp : dsMH) {
+		for (MonHoc temp : allCourses) {
 			courseList[index++] = temp.getMaMH() + " - " + temp.getTenMH();
 		}
 		return courseList;
 	}
 	
-	public XemDiemTab() {
+	public DKHPTab() {
 		
 		JPanel title = new JPanel();
 		
-		JLabel titleContent = new JLabel("Tra c\u1EE9u k\u1EBFt qu\u1EA3 h\u1ECDc t\u1EADp");
+		JLabel titleContent = new JLabel("Đăng ký học phần");
 		titleContent.setFont(new Font("Tahoma", Font.BOLD, 24));
 		title.add(titleContent);
 		
@@ -92,7 +86,7 @@ public class XemDiemTab extends JPanel {
 		
 		
 		String selectedStudent = (String)studentBox.getSelectedItem();
-		String[] courseList = getCoursesList(selectedStudent);
+		String[] courseList = getAvailableCoursesList(selectedStudent);
 		JComboBox courseBox = new JComboBox(courseList);
 		courseBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -100,9 +94,9 @@ public class XemDiemTab extends JPanel {
 					String selectedItem = (String) courseBox.getSelectedItem();
 					selectedItem = selectedItem.split(" - ")[0];
 					if (selectedItem.contentEquals("------------------------------------------------------------------------------")) {
-						btnTraCuu.setEnabled(false);
+						btnDangKy.setEnabled(false);
 					} else {
-						btnTraCuu.setEnabled(true);
+						btnDangKy.setEnabled(true);
 						courseId = selectedItem;
 					}
 				}
@@ -145,26 +139,20 @@ public class XemDiemTab extends JPanel {
 		JPanel btnSubmitBorder = new JPanel();
 		btnSubmitBorder.setBorder(new EmptyBorder(5, 0, 5, 0));
 		panel.add(btnSubmitBorder);
-		btnSubmitBorder.add(btnTraCuu);
-		btnTraCuu.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnSubmitBorder.add(btnDangKy);
+		btnDangKy.setAlignmentX(Component.CENTER_ALIGNMENT);
 		
-		btnTraCuu.setEnabled(false);
-		btnTraCuu.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnDangKy.setEnabled(false);
+		btnDangKy.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		btnTraCuu.addActionListener(new ActionListener() {
+		btnDangKy.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				BangDiem result = BangDiemDAO.thongTinBangDiem(studentId, courseId);
-				if (result != null) {
-					String score = "Mã số sinh viên: " + result.getMaSV() + "\n";
-					score += "Mã môn học: " + result.getMaMH() + "\n";
-					score += "Giữa kì: " + result.getDiemGK() + "\n";
-					score += "Cuối kì: " + result.getDiemCK() + "\n";
-					score += "Điểm khác: " + result.getDiemKhac() + "\n";
-					score += "Điểm tổng: " + result.getDiemTong() + "\n";
-					JOptionPane.showMessageDialog(new JFrame(), score, "Tra cứu thành công!",JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					JOptionPane.showMessageDialog(new JFrame(), "Có lỗi xảy ra khi tìm kiếm!", "Tra cứu thất bại!",JOptionPane.ERROR_MESSAGE);
-				}
+				BangDiemDAO.themBangDiem(new BangDiem(studentId, courseId));
+				String message = "Đăng ký môn học thành công!" + "\n";
+				message += "Mã môn học: " + courseId + "\n";
+				message += "Mã số sinh viên: " + studentId;
+				JOptionPane.showMessageDialog(new JFrame(), message, "Thành công!",JOptionPane.INFORMATION_MESSAGE);
+				Main.setMainPanel(new SinhVienTab());
 			}
 		});
 		
@@ -212,16 +200,16 @@ public class XemDiemTab extends JPanel {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			String[] courseList = getCoursesList((String) sourceBox.getSelectedItem());
+			String[] courseList = getAvailableCoursesList((String) sourceBox.getSelectedItem());
 			dynamicBox.removeAllItems();
 			for (String course : courseList) {
 				dynamicBox.addItem(course);
 			}
 			dynamicBox.validate();
-			btnTraCuu.setEnabled(false);
+			btnDangKy.setEnabled(false);
 			studentId = (String) sourceBox.getSelectedItem();
 			studentId = studentId.split(" - ")[0];
 		}
 	}
-}
 
+}

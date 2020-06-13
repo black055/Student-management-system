@@ -5,6 +5,7 @@
  */
 package pojo;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -20,6 +21,8 @@ public class Lop {
     }
     public Lop(String maLop) {
         this.maLop = maLop;
+        this.dsSV = new HashSet<SinhVien>();
+        this.dsMH = new HashSet<MonHoc>();
     }
     public Lop(String maLop, Set<SinhVien> dsSV, Set<MonHoc> dsMH) {
         this.maLop = maLop;
