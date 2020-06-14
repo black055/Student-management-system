@@ -11,6 +11,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import QuanLySinhVien.MainClass.Main;
 import dao.LopDAO;
+import dao.MonHocDAO;
 import dao.SinhVienDAO;
 import pojo.Lop;
 import pojo.MonHoc;
@@ -40,7 +41,7 @@ public class LopTab extends JPanel {
 	 * Create the panel.
 	 */
 	
-	private boolean readClassList(File selectedFile) {
+	private boolean validateClassListFile(File selectedFile) {
 		BufferedReader bf = null;
 		try {
 			bf = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile), "utf8"));
@@ -48,22 +49,17 @@ public class LopTab extends JPanel {
 			e.printStackTrace();
 			return false;
 		}
+		
 		if (bf != null) {
 			try {
-				String maLop = bf.readLine();
 				String row = bf.readLine();
-				Lop lop = LopDAO.thongTinLop(maLop);
-				if (lop == null) {
-					lop = new Lop(maLop);
-				}
+				if (row.contentEquals("STT,MSSV,Họ tên, Giới tính,CMND"));
 				row = bf.readLine();
 				do {
-					String[] info = row.split(",");
-					
-					lop.getDsSV().add(new SinhVien(info[1], info[2], info[3], info[4], lop, lop.getDsMH()));
+					if (row.split(",").length != 5)
+						return false;
 					row = bf.readLine();
 				} while (row != null);
-				LopDAO.themHoacCapNhat(lop);
 			} catch (IOException ex) {
 				System.out.println(ex.getMessage());
 			}
@@ -74,6 +70,117 @@ public class LopTab extends JPanel {
 			System.out.println(e.getMessage());
 		}
 		return true;
+	}
+	
+	private int readClassList(File selectedFile) {
+		BufferedReader bf = null;
+		try {
+			bf = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile), "utf8"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		int count = 0;
+		if (bf != null) {
+			try {
+				String maLop = bf.readLine();
+				String row = bf.readLine();
+				Lop lop = LopDAO.thongTinLop(maLop);
+				if (lop == null) {
+					lop = new Lop(maLop);
+					LopDAO.themLop(lop);
+				}
+				row = bf.readLine();
+				do {
+					String[] info = row.split(",");
+					
+					boolean success = SinhVienDAO.themSinhVien(new SinhVien(info[1], info[2], info[3], info[4], lop, lop.getDsMH()));
+					
+					if (success == true) count++;
+					
+					row = bf.readLine();
+				} while (row != null);
+			} catch (IOException ex) {
+				System.out.println(ex.getMessage());
+			}
+		}
+		try {
+			bf.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		return count;
+	}
+	
+	private boolean validateScheduleFile(File selectedFile) {
+		BufferedReader bf = null;
+		try {
+			bf = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile), "utf8"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		if (bf != null) {
+			try {
+				String row = bf.readLine();
+				if (row.contentEquals("STT,Mã môn,Tên môn,Phòng học"));
+				row = bf.readLine();
+				do {
+					if (row.split(",").length != 4)
+						return false;
+					row = bf.readLine();
+				} while (row != null);
+			} catch (IOException ex) {
+				System.out.println(ex.getMessage());
+			}
+		}
+		try {
+			bf.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		return true;
+	}
+	
+	private int readScheduleFile(File selectedFile) {
+		BufferedReader bf = null;
+		try {
+			bf = new BufferedReader(new InputStreamReader(new FileInputStream(selectedFile), "utf8"));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+		int count = 0;
+		if (bf != null) {
+			try {
+				String maLop = bf.readLine();
+				String row = bf.readLine();
+				Lop lop = LopDAO.thongTinLop(maLop);
+				if (lop == null) {
+					lop = new Lop(maLop);
+					LopDAO.themLop(lop);
+				}
+				row = bf.readLine();
+				do {
+					String[] info = row.split(",");
+					
+					boolean success = MonHocDAO.themMonHoc(new MonHoc(info[1], info[2], info[3], lop, lop.getDsSV()));
+					
+					if (success == true) count++;
+					
+					row = bf.readLine();
+				} while (row != null);
+			} catch (IOException ex) {
+				System.out.println(ex.getMessage());
+			}
+		}
+		try {
+			bf.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		return count;
 	}
 	
 	public LopTab() {
@@ -101,13 +208,17 @@ public class LopTab extends JPanel {
 				JFileChooser fc = new JFileChooser();
 				int select = fc.showOpenDialog(Main.getMainPanel());
 				if (select == JFileChooser.APPROVE_OPTION) {
-					boolean result = readClassList(fc.getSelectedFile());
-					if (result == false) {
-						JOptionPane.showMessageDialog(new JFrame(), "Có lỗi xảy ra trong quá trình import\n Vui lòng kiểm tra lại định dạng file", "Thêm thất bại!",JOptionPane.ERROR_MESSAGE);
+					if (validateClassListFile(fc.getSelectedFile())) {
+						int result = readClassList(fc.getSelectedFile());
+						if (result == -1) {
+							JOptionPane.showMessageDialog(new JFrame(), "Có lỗi xảy ra trong quá trình import\n Vui lòng kiểm tra lại định dạng file", "Thêm thất bại!",JOptionPane.ERROR_MESSAGE);
+						} else {
+							String message = "Import danh sách lớp thành công!\n";
+							message += "Thêm " + result + " sinh viên vào danh sách\n";
+							JOptionPane.showMessageDialog(new JFrame(), message, "Thêm thành công!",JOptionPane.INFORMATION_MESSAGE);
+						}
 					} else {
-						String message = "Import danh sách lớp thành công!\n";
-						message += "Thêm thành công " + result + " sinh viên.";
-						JOptionPane.showMessageDialog(new JFrame(), message, "Thêm thành công!",JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(new JFrame(), "File không đúng định dạng", "Thêm thất bại!",JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			}
@@ -115,12 +226,42 @@ public class LopTab extends JPanel {
 		btnImportClassList.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JButton btnViewClassList = new JButton("Xem danh sách lớp");
+		btnViewClassList.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.setMainPanel(new XemDSLopTab());
+			}
+		});
 		btnViewClassList.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JButton btnViewSchedule = new JButton("Xem thời khóa biểu");
+		btnViewSchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.setMainPanel(new XemTKBTab());
+			}
+		});
 		btnViewSchedule.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JButton btnImportSchedule = new JButton("Import thời khóa biểu");
+		btnImportSchedule.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fc = new JFileChooser();
+				int select = fc.showOpenDialog(Main.getMainPanel());
+				if (select == JFileChooser.APPROVE_OPTION) {
+					if (validateScheduleFile(fc.getSelectedFile())) {
+						int result = readScheduleFile(fc.getSelectedFile());
+						if (result == -1) {
+							JOptionPane.showMessageDialog(new JFrame(), "Có lỗi xảy ra trong quá trình import\n Vui lòng kiểm tra lại định dạng file", "Thêm thất bại!",JOptionPane.ERROR_MESSAGE);
+						} else {
+							String message = "Import thời khóa biểu thành công!\n";
+							message += "Thêm " + result + " môn học vào danh sách\n";
+							JOptionPane.showMessageDialog(new JFrame(), message, "Thêm thành công!",JOptionPane.INFORMATION_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(new JFrame(), "File không đúng định dạng", "Thêm thất bại!",JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		});
 		btnImportSchedule.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
