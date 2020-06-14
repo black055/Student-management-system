@@ -10,9 +10,11 @@ import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import QuanLySinhVien.MainClass.Main;
+import dao.BangDiemDAO;
 import dao.LopDAO;
 import dao.MonHocDAO;
 import dao.SinhVienDAO;
+import pojo.BangDiem;
 import pojo.Lop;
 import pojo.MonHoc;
 import pojo.SinhVien;
@@ -23,6 +25,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -93,10 +97,16 @@ public class LopTab extends JPanel {
 				row = bf.readLine();
 				do {
 					String[] info = row.split(",");
+					Set<MonHoc> dsMH = new HashSet<MonHoc>(lop.getDsMH());
+					boolean success = SinhVienDAO.themSinhVien(new SinhVien(info[1], info[2], info[3], info[4], lop, dsMH));
 					
-					boolean success = SinhVienDAO.themSinhVien(new SinhVien(info[1], info[2], info[3], info[4], lop, lop.getDsMH()));
-					
-					if (success == true) count++;
+					if (success == true) {
+						for (MonHoc mh : dsMH) {
+							BangDiem bd = new BangDiem(info[1], mh.getMaMH());
+							BangDiemDAO.suaBangDiem(bd);
+						}
+						count++;
+					}
 					
 					row = bf.readLine();
 				} while (row != null);
@@ -164,10 +174,16 @@ public class LopTab extends JPanel {
 				row = bf.readLine();
 				do {
 					String[] info = row.split(",");
+					Set<SinhVien> dsSV = new HashSet<SinhVien>(lop.getDsSV());
+					boolean success = MonHocDAO.themMonHoc(new MonHoc(info[1], info[2], info[3], lop, dsSV));
 					
-					boolean success = MonHocDAO.themMonHoc(new MonHoc(info[1], info[2], info[3], lop, lop.getDsSV()));
-					
-					if (success == true) count++;
+					if (success == true) {
+						for (SinhVien sv : dsSV) {
+							BangDiem bd = new BangDiem(sv.getMaSV(), info[1]);
+							BangDiemDAO.suaBangDiem(bd);
+						}
+						count++;
+					}
 					
 					row = bf.readLine();
 				} while (row != null);

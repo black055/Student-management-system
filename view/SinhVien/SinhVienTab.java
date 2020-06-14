@@ -37,6 +37,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 /**
  * view.SinhVien
@@ -113,18 +114,19 @@ public class SinhVienTab extends JPanel {
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(title, GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)
-				.addGroup(groupLayout.createSequentialGroup()
-					.addComponent(center, GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-					.addComponent(buttons, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+				.addComponent(title, GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addComponent(center, GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(buttons, GroupLayout.PREFERRED_SIZE, 162, GroupLayout.PREFERRED_SIZE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(title, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(center, GroupLayout.PREFERRED_SIZE, 441, Short.MAX_VALUE)
-						.addComponent(buttons, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)))
+						.addComponent(buttons, GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+						.addComponent(center, GroupLayout.PREFERRED_SIZE, 441, Short.MAX_VALUE)))
 		);
 		GroupLayout gl_center = new GroupLayout(center);
 		gl_center.setHorizontalGroup(
@@ -154,26 +156,37 @@ public class SinhVienTab extends JPanel {
 			}
 		});
 		btnHuyHP.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		JButton btnNewButton = new JButton("Sửa điểm");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Main.setMainPanel(new SuaDiemTab());
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_buttons = new GroupLayout(buttons);
 		gl_buttons.setHorizontalGroup(
 			gl_buttons.createParallelGroup(Alignment.LEADING)
-				.addComponent(btnThemSV, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-				.addComponent(btnXemDiem, GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
-				.addComponent(btnDKHP, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
-				.addComponent(btnHuyHP, GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+				.addComponent(btnThemSV, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+				.addComponent(btnXemDiem, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+				.addComponent(btnNewButton, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+				.addComponent(btnDKHP, GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+				.addComponent(btnHuyHP, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
 		);
 		gl_buttons.setVerticalGroup(
 			gl_buttons.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_buttons.createSequentialGroup()
 					.addGap(39)
 					.addComponent(btnThemSV, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(36)
-					.addComponent(btnXemDiem, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)
-					.addGap(29)
+					.addGap(18)
+					.addComponent(btnXemDiem, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
 					.addComponent(btnDKHP, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-					.addGap(28)
+					.addGap(18)
 					.addComponent(btnHuyHP, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addGap(177))
+					.addGap(166))
 		);
 		buttons.setLayout(gl_buttons);
 		setLayout(groupLayout);
