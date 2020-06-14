@@ -34,7 +34,7 @@ import pojo.SinhVien;
  * @Date Jun 12, 2020 - 2:22:40 PM 
  * @Description ...
  */
-public class DKHPTab extends JPanel {
+public class PanelDKHP extends JPanel {
 
 	private JButton btnDangKy = new JButton("Đăng ký");
 	private JButton btnQuayVe = new JButton("Quay về");
@@ -59,7 +59,7 @@ public class DKHPTab extends JPanel {
 		return courseList;
 	}
 	
-	public DKHPTab() {
+	public PanelDKHP() {
 		
 		JPanel title = new JPanel();
 		
@@ -152,7 +152,7 @@ public class DKHPTab extends JPanel {
 				message += "Mã môn học: " + courseId + "\n";
 				message += "Mã số sinh viên: " + studentId;
 				JOptionPane.showMessageDialog(new JFrame(), message, "Thành công!",JOptionPane.INFORMATION_MESSAGE);
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		
@@ -163,7 +163,7 @@ public class DKHPTab extends JPanel {
 		btnQuayVe.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnQuayVe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		

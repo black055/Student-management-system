@@ -1,42 +1,43 @@
 package view.Lop;
 
+import javax.swing.JPanel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Set;
 
-import javax.swing.GroupLayout;
-import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 
 import QuanLySinhVien.MainClass.Main;
 import dao.LopDAO;
+import dao.SinhVienDAO;
 import pojo.Lop;
-import pojo.MonHoc;
 import pojo.SinhVien;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * view.Lop
  * @Created by DELL - StudentID: 18120652
- * @Date Jun 13, 2020 - 12:34:29 PM 
+ * @Date Jun 13, 2020 - 12:06:58 PM 
  * @Description ...
  */
-public class XemTKBTab extends JPanel {
+public class PanelDSLop extends JPanel {
 	private JTable table;
 
 	/**
 	 * Create the panel.
 	 */
-	public XemTKBTab() {
+	public PanelDSLop() {
 		
 		JPanel title = new JPanel();
 		
@@ -58,27 +59,27 @@ public class XemTKBTab extends JPanel {
 		JButton btnQuayVe = new JButton("Quay v\u1EC1");
 		btnQuayVe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new LopTab());
+				Main.setMainPanel(new PanelLop());
 			}
 		});
 		btnQuayVe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
-				.addComponent(title, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+				.addComponent(title, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(59)
 					.addComponent(lblLop)
 					.addGap(18)
 					.addComponent(classBox, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
-					.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+					.addComponent(btnSubmit, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
 					.addGap(58))
 				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-					.addContainerGap(423, Short.MAX_VALUE)
-					.addComponent(btnQuayVe, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(374, Short.MAX_VALUE)
+					.addComponent(btnQuayVe, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap())
-				.addComponent(sp, GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE)
+				.addComponent(sp, GroupLayout.DEFAULT_SIZE, 482, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -90,10 +91,10 @@ public class XemTKBTab extends JPanel {
 						.addComponent(lblLop)
 						.addComponent(btnSubmit))
 					.addGap(11)
-					.addComponent(sp, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+					.addComponent(sp, GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnQuayVe, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(6))
+					.addComponent(btnQuayVe)
+					.addGap(10))
 		);
 		
 		table = new JTable();
@@ -101,7 +102,7 @@ public class XemTKBTab extends JPanel {
 			new Object[][] {
 			},
 			new String[] {
-				"M\u00E3 m\u00F4n h\u1ECDc", "T\u00EAn m\u00F4n h\u1ECDc", "Ph\u00F2ng h\u1ECDc"
+				"MSSV", "H\u1ECD t\u00EAn", "Gi\u1EDBi t\u00EDnh", "CMND"
 			}
 		) {
 			Class[] columnTypes = new Class[] {
@@ -110,10 +111,16 @@ public class XemTKBTab extends JPanel {
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
+			boolean[] columnEditables = new boolean[] {
+				false, false, false, false
+			};
+			public boolean isCellEditable(int row, int column) {
+				return columnEditables[column];
+			}
 		});
 		sp.setViewportView(table);
 		
-		JLabel titleContent = new JLabel("Xem th\u1EDDi kh\u00F3a bi\u1EC3u");
+		JLabel titleContent = new JLabel("Xem danh s\u00E1ch l\u1EDBp");
 		titleContent.setFont(new Font("Tahoma", Font.BOLD, 24));
 		titleContent.setHorizontalAlignment(SwingConstants.CENTER);
 		title.add(titleContent);
@@ -123,19 +130,20 @@ public class XemTKBTab extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				String selectedClass = (String) classBox.getSelectedItem();
 				Lop selected = LopDAO.thongTinLop(selectedClass);
-				Set<MonHoc> danhSachMH = selected.getDsMH();
-				String[][] rows = new String[danhSachMH.size()][5];
+				Set<SinhVien> danhSachSV = selected.getDsSV();
+				String[][] rows = new String[danhSachSV.size()][5];
 				int i = 0;
-				for (MonHoc mh : danhSachMH) {
-					rows[i][0] = mh.getMaMH();
-					rows[i][1] = mh.getTenMH();
-					rows[i][2] = mh.getPhongHoc();
+				for (SinhVien sv : danhSachSV) {
+					rows[i][0] = sv.getMaSV();
+					rows[i][1] =sv.getTenSV();
+					rows[i][2] = sv.getGioiTinh();
+					rows[i][3] = sv.getCmnd();
 					i++;
 				}
 				
 				table.setModel(new DefaultTableModel(rows,
 					new String[] {
-							"M\u00E3 m\u00F4n h\u1ECDc", "T\u00EAn m\u00F4n h\u1ECDc", "Ph\u00F2ng h\u1ECDc"
+							"MSSV", "H\u1ECD t\u00EAn", "Gi\u1EDBi t\u00EDnh", "CMND"
 					}
 				));
 			}

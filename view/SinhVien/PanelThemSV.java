@@ -33,7 +33,7 @@ import javax.swing.GroupLayout.Alignment;
  * @Date Jun 10, 2020 - 7:54:27 PM 
  * @Description ...
  */
-public class ThemSVTab extends JPanel {
+public class PanelThemSV extends JPanel {
 	private JTextField txtHoTen;
 	private JTextField txtCMND;
 	private JTextField txtMSSV;
@@ -48,7 +48,7 @@ public class ThemSVTab extends JPanel {
 		return true;
 	}
 	
-	public ThemSVTab() {
+	public PanelThemSV() {
 		
 		JPanel title = new JPanel();
 		title.setBackground(Color.CYAN);
@@ -129,7 +129,7 @@ public class ThemSVTab extends JPanel {
 				} else {
 					JOptionPane.showMessageDialog(new JFrame(), "Vui lòng kiểm tra lại thông tin đã nhập!\n Mã số sinh viên có thể đã tồn tại", "Thêm thất bại!",JOptionPane.ERROR_MESSAGE);
 				}
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		btnThemSV.setEnabled(false);
@@ -151,7 +151,7 @@ public class ThemSVTab extends JPanel {
 		btnQuayVe.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		btnQuayVe.setFont(new Font("Tahoma", Font.PLAIN, 14));

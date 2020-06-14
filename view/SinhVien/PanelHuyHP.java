@@ -32,7 +32,7 @@ import pojo.SinhVien;
  * @Date Jun 12, 2020 - 4:04:57 PM 
  * @Description ...
  */
-public class HuyHPTab extends JPanel {
+public class PanelHuyHP extends JPanel {
 	private JButton btnHuy = new JButton("Hủy môn học");
 	private JButton btnQuayVe = new JButton("Quay về");
 	
@@ -55,7 +55,7 @@ public class HuyHPTab extends JPanel {
 		return courseList;
 	}
 	
-	public HuyHPTab() {
+	public PanelHuyHP() {
 		
 		JPanel title = new JPanel();
 		
@@ -152,7 +152,7 @@ public class HuyHPTab extends JPanel {
 				} else {
 					JOptionPane.showMessageDialog(new JFrame(), "Có lỗi xảy ra!", "Hủy thất bại!",JOptionPane.ERROR_MESSAGE);
 				}
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		
@@ -163,7 +163,7 @@ public class HuyHPTab extends JPanel {
 		btnQuayVe.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnQuayVe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		

@@ -41,7 +41,7 @@ import java.awt.event.KeyEvent;
  * @Description ...
  */
 
-public class SuaDiemTab extends JPanel {
+public class PanelSuaDiem extends JPanel {
 	
 	private JButton btnSuaDiem = new JButton("Sửa điểm");
 	private JButton btnQuayVe = new JButton("Quay về");
@@ -92,7 +92,7 @@ public class SuaDiemTab extends JPanel {
 		return true;
 	}
 	
-	public SuaDiemTab() {
+	public PanelSuaDiem() {
 		
 		JPanel title = new JPanel();
 		
@@ -277,7 +277,7 @@ public class SuaDiemTab extends JPanel {
 					JOptionPane.showMessageDialog(new JFrame(), "Có lỗi xảy ra khi tìm kiếm!", "Tra cứu thất bại!",JOptionPane.ERROR_MESSAGE);
 				}
 				
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		
@@ -291,7 +291,7 @@ public class SuaDiemTab extends JPanel {
 		btnQuayVe.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnQuayVe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		

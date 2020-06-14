@@ -39,7 +39,7 @@ import java.awt.event.ActionEvent;
  * @Date Jun 12, 2020 - 7:15:54 PM 
  * @Description ...
  */
-public class LopTab extends JPanel {
+public class PanelLop extends JPanel {
 
 	/**
 	 * Create the panel.
@@ -57,7 +57,9 @@ public class LopTab extends JPanel {
 		if (bf != null) {
 			try {
 				String row = bf.readLine();
-				if (row.contentEquals("STT,MSSV,Họ tên, Giới tính,CMND"));
+				row = bf.readLine();
+				if (!row.contentEquals("STT,MSSV,Họ tên, Giới tính,CMND"))
+					return false;
 				row = bf.readLine();
 				do {
 					if (row.split(",").length != 5)
@@ -134,7 +136,9 @@ public class LopTab extends JPanel {
 		if (bf != null) {
 			try {
 				String row = bf.readLine();
-				if (row.contentEquals("STT,Mã môn,Tên môn,Phòng học"));
+				row = bf.readLine();
+				if (!row.contentEquals("STT,Mã môn,Tên môn,Phòng học"))
+					return false;
 				row = bf.readLine();
 				do {
 					if (row.split(",").length != 4)
@@ -199,7 +203,7 @@ public class LopTab extends JPanel {
 		return count;
 	}
 	
-	public LopTab() {
+	public PanelLop() {
 		
 		JPanel title = new JPanel();
 		
@@ -244,7 +248,7 @@ public class LopTab extends JPanel {
 		JButton btnViewClassList = new JButton("Xem danh sách lớp");
 		btnViewClassList.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new XemDSLopTab());
+				Main.setMainPanel(new PanelDSLop());
 			}
 		});
 		btnViewClassList.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -252,7 +256,7 @@ public class LopTab extends JPanel {
 		JButton btnViewSchedule = new JButton("Xem thời khóa biểu");
 		btnViewSchedule.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new XemTKBTab());
+				Main.setMainPanel(new PanelTKB());
 			}
 		});
 		btnViewSchedule.setFont(new Font("Tahoma", Font.PLAIN, 14));

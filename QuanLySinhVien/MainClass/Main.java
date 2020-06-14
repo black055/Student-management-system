@@ -7,8 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import view.Lop.LopTab;
-import view.SinhVien.SinhVienTab;
+import view.Lop.PanelLop;
+import view.MonHoc.PanelMonHoc;
+import view.SinhVien.PanelSinhVien;
 
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -131,7 +132,7 @@ public class Main extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
 				sinhVienDb.setBackground(Color.CYAN);
-				setMainPanel(new SinhVienTab());
+				setMainPanel(new PanelSinhVien());
 			}
 		});
 		
@@ -148,7 +149,7 @@ public class Main extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
 				lopDb.setBackground(Color.CYAN);
-				setMainPanel(new LopTab());
+				setMainPanel(new PanelLop());
 			}
 		});
 		
@@ -165,6 +166,7 @@ public class Main extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
 				monHocDb.setBackground(Color.CYAN);
+				setMainPanel(new PanelMonHoc());
 			}
 		});
 		

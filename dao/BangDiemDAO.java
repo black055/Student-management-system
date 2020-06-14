@@ -1,9 +1,12 @@
 package dao;
 
 
+import java.util.List;
+
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import pojo.BangDiem;
 import util.HibernateUtil;
@@ -27,6 +30,22 @@ public class BangDiemDAO {
 		return bd;
 	}
 
+	public static List<BangDiem> ketQuaMonHoc(String maMH) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<BangDiem> ds = null;
+		try {
+			String hql = "select bd from BangDiem bd where bd.maMH = :maMH";
+			Query qr = session.createQuery(hql);
+			qr.setParameter("maMH", maMH);
+			ds = qr.list();
+		} catch (HibernateException ex) {
+			System.err.println(ex.getMessage());
+		} finally  {
+			session.close();
+		}
+		return ds;
+	}
+	
 	public static boolean themBangDiem(BangDiem bd) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		if (BangDiemDAO.thongTinBangDiem(bd.getMaSV(), bd.getMaMH()) != null) {

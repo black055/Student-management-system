@@ -41,7 +41,7 @@ import javax.swing.border.EmptyBorder;
  * @Date Jun 10, 2020 - 10:45:20 PM 
  * @Description ...
  */
-public class XemDiemTab extends JPanel {
+public class PanelXemDiemSV extends JPanel {
 	
 	private JButton btnTraCuu = new JButton("Tra cứu điểm");
 	private JButton btnQuayVe = new JButton("Quay về");
@@ -65,7 +65,7 @@ public class XemDiemTab extends JPanel {
 		return courseList;
 	}
 	
-	public XemDiemTab() {
+	public PanelXemDiemSV() {
 		
 		JPanel title = new JPanel();
 		
@@ -175,7 +175,7 @@ public class XemDiemTab extends JPanel {
 		btnQuayVe.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnQuayVe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new SinhVienTab());
+				Main.setMainPanel(new PanelSinhVien());
 			}
 		});
 		

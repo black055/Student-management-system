@@ -45,13 +45,13 @@ import javax.swing.LayoutStyle.ComponentPlacement;
  * @Date Jun 10, 2020 - 3:11:26 PM 
  * @Description ...
  */
-public class SinhVienTab extends JPanel {
+public class PanelSinhVien extends JPanel {
 	private JTable danhSach = new JTable();
 
 	/**
 	 * Create the panel.
 	 */
-	public SinhVienTab() {
+	public PanelSinhVien() {
 		
 		JPanel title = new JPanel();
 		title.setBackground(Color.CYAN);
@@ -99,7 +99,7 @@ public class SinhVienTab extends JPanel {
 		btnThemSV.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Main.setMainPanel(new ThemSVTab());
+				Main.setMainPanel(new PanelThemSV());
 			}
 		});
 		btnThemSV.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -107,7 +107,7 @@ public class SinhVienTab extends JPanel {
 		JButton btnXemDiem = new JButton("Xem điểm");
 		btnXemDiem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new XemDiemTab());
+				Main.setMainPanel(new PanelXemDiemSV());
 			}
 		});
 		btnXemDiem.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -144,7 +144,7 @@ public class SinhVienTab extends JPanel {
 		JButton btnDKHP = new JButton("Đăng kí học phần");
 		btnDKHP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new DKHPTab());
+				Main.setMainPanel(new PanelDKHP());
 			}
 		});
 		btnDKHP.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -152,7 +152,7 @@ public class SinhVienTab extends JPanel {
 		JButton btnHuyHP = new JButton("Hủy học phần");
 		btnHuyHP.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new HuyHPTab());
+				Main.setMainPanel(new PanelHuyHP());
 			}
 		});
 		btnHuyHP.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -160,7 +160,7 @@ public class SinhVienTab extends JPanel {
 		JButton btnNewButton = new JButton("Sửa điểm");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new SuaDiemTab());
+				Main.setMainPanel(new PanelSuaDiem());
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));

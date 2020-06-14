@@ -19,6 +19,21 @@ import util.HibernateUtil;
  */
 public class MonHocDAO {
 	
+	public static List<MonHoc> danhSachMonHoc() {
+		List<MonHoc> ds = null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		try {
+			String hql = "select mh from MonHoc mh";
+			Query qr = session.createQuery(hql);
+			ds = qr.list();
+		} catch (HibernateException ex) {
+			System.err.println(ex.getMessage());
+		} finally {
+			session.close();
+		}
+		return ds;
+	}
+	
 	public static List<MonHoc> monHocChuaDangKy(String maSV) {
 		List<MonHoc> ds = null;
 		Session session = HibernateUtil.getSessionFactory().openSession();
