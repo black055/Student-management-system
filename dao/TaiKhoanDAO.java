@@ -34,9 +34,27 @@ public class TaiKhoanDAO {
 		Transaction trans = null;
 		try {
 			trans = session.beginTransaction();
-			session.save(tk);
+			session.update(tk);
 			trans.commit();
 		} catch (HibernateException ex) {
+			trans.rollback();
+			System.err.println(ex.getMessage());
+		} finally {
+			session.close();
+		}
+		return true;
+	}
+	public static boolean themTaiKhoan(TaiKhoan tk) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		if (TaiKhoanDAO.thongTinTaiKhoan(tk.getTenTK()) != null) {
+			return false;
+		}
+		Transaction trans = null;
+		try {
+			trans = session.beginTransaction();
+			session.save(tk);
+			trans.commit();
+		} catch(HibernateException ex) {
 			trans.rollback();
 			System.err.println(ex.getMessage());
 		} finally {

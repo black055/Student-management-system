@@ -30,6 +30,22 @@ public class BangDiemDAO {
 		return bd;
 	}
 
+	public static List<BangDiem> ketQuaHocTap(String maSV) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		List<BangDiem> ds = null;
+		try {
+			String hql = "select bd from BangDiem bd where bd.maSV = :maSV";
+			Query qr = session.createQuery(hql);
+			qr.setParameter("maSV", maSV);
+			ds = qr.list();
+		} catch (HibernateException ex) {
+			System.err.println(ex.getMessage());
+		} finally {
+			session.close();
+		}
+		return ds;
+	}
+	
 	public static List<BangDiem> ketQuaMonHoc(String maMH) {
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		List<BangDiem> ds = null;

@@ -14,10 +14,12 @@ import dao.BangDiemDAO;
 import dao.LopDAO;
 import dao.MonHocDAO;
 import dao.SinhVienDAO;
+import dao.TaiKhoanDAO;
 import pojo.BangDiem;
 import pojo.Lop;
 import pojo.MonHoc;
 import pojo.SinhVien;
+import pojo.TaiKhoan;
 
 import javax.swing.JButton;
 import java.io.BufferedReader;
@@ -104,6 +106,8 @@ public class PanelLop extends JPanel {
 					boolean success = SinhVienDAO.themSinhVien(new SinhVien(info[1], info[2], info[3], info[4], lop, dsMH));
 					
 					if (success == true) {
+						TaiKhoanDAO.themTaiKhoan(new TaiKhoan(info[1], info[1], false));
+						
 						for (MonHoc mh : dsMH) {
 							BangDiem bd = new BangDiem(info[1], mh.getMaMH());
 							BangDiemDAO.suaBangDiem(bd);

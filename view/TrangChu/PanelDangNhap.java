@@ -14,8 +14,11 @@ import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import QuanLySinhVien.MainClass.Main;
 import dao.TaiKhoanDAO;
 import pojo.TaiKhoan;
+import view.dashboard.GiaoVuDashboard;
+import view.dashboard.SinhVienDashboard;
 
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
@@ -106,6 +109,13 @@ public class PanelDangNhap extends JPanel {
 					if (input.getMatKhau().contentEquals(new String(txtPassword.getPassword())))
 					{
 						JOptionPane.showMessageDialog(new JFrame(), "Chào mừng bạn đến với chương trình quản lý sinh viên", "Đăng nhập thành công",JOptionPane.INFORMATION_MESSAGE);
+						Main.setTaiKhoan(input);
+						if (input.getGiaoVu() == true) {
+							Main.setDashboard(new GiaoVuDashboard());
+						} else {
+							Main.setDashboard(new SinhVienDashboard());
+						}
+						Main.setMainPanel(new PanelTrangChu());
 					} else {
 						JOptionPane.showMessageDialog(new JFrame(), "Mật khẩu không trùng khớp", "Đăng nhập thất bại",JOptionPane.ERROR_MESSAGE);
 					}

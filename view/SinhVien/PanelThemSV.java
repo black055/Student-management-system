@@ -12,6 +12,7 @@ import QuanLySinhVien.MainClass.Main;
 import dao.BangDiemDAO;
 import dao.LopDAO;
 import dao.SinhVienDAO;
+import dao.TaiKhoanDAO;
 import pojo.*;
 
 import javax.swing.JRadioButton;
@@ -119,10 +120,14 @@ public class PanelThemSV extends JPanel {
 				
 				boolean result = SinhVienDAO.themSinhVien(sv);
 				
-				for (MonHoc temp : lop.getDsMH()) {
-					BangDiemDAO.suaBangDiem(new BangDiem(mssv, temp.getMaMH()));
-				}
 				if (result == true) {
+					
+					for (MonHoc temp : lop.getDsMH()) {
+						BangDiemDAO.suaBangDiem(new BangDiem(mssv, temp.getMaMH()));
+					}
+					
+					TaiKhoanDAO.themTaiKhoan(new TaiKhoan(mssv, mssv, false));
+					
 					String message = "Thêm sinh viên thành công: \n";
 					message += "MSSV: " + mssv + "\n";
 					message += "Họ tên: " + ten + "\n";
