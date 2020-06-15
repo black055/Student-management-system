@@ -25,6 +25,7 @@ import pojo.BangDiem;
 import pojo.MonHoc;
 import pojo.SinhVien;
 import view.Lop.PanelLop;
+import java.awt.Color;
 
 /**
  * view.MonHoc
@@ -39,8 +40,10 @@ public class PanelBangDiem extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelBangDiem() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JLabel lbMonHoc = new JLabel("M\u00D4N H\u1ECCC:");
 		lbMonHoc.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -60,7 +63,7 @@ public class PanelBangDiem extends JPanel {
 		JButton btnQuayVe = new JButton("Quay v\u1EC1");
 		btnQuayVe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new PanelLop());
+				Main.setMainPanel(new PanelMonHoc());
 			}
 		});
 		btnQuayVe.setFont(new Font("Tahoma", Font.PLAIN, 14));

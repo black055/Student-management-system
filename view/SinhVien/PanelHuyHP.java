@@ -25,6 +25,7 @@ import dao.SinhVienDAO;
 import pojo.BangDiem;
 import pojo.MonHoc;
 import pojo.SinhVien;
+import java.awt.Color;
 
 /**
  * view.SinhVien
@@ -56,14 +57,17 @@ public class PanelHuyHP extends JPanel {
 	}
 	
 	public PanelHuyHP() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JLabel titleContent = new JLabel("Hủy đăng ký học phần");
 		titleContent.setFont(new Font("Tahoma", Font.BOLD, 24));
 		title.add(titleContent);
 		
 		JPanel form = new JPanel();
+		form.setBackground(new Color(245, 245, 245));
 		
 		JLabel lblNewLabel = new JLabel("SINH VI\u00CAN:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -100,6 +104,7 @@ public class PanelHuyHP extends JPanel {
 		});
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(245, 245, 245));
 		GroupLayout gl_form = new GroupLayout(form);
 		gl_form.setHorizontalGroup(
 			gl_form.createParallelGroup(Alignment.LEADING)
@@ -133,6 +138,7 @@ public class PanelHuyHP extends JPanel {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
 		JPanel btnHuyBorder = new JPanel();
+		btnHuyBorder.setBackground(new Color(245, 245, 245));
 		btnHuyBorder.setBorder(new EmptyBorder(5, 0, 5, 0));
 		panel.add(btnHuyBorder);
 		btnHuyBorder.add(btnHuy);
@@ -157,6 +163,7 @@ public class PanelHuyHP extends JPanel {
 		});
 		
 		JPanel btnBackBorder = new JPanel();
+		btnBackBorder.setBackground(new Color(245, 245, 245));
 		btnBackBorder.setBorder(new EmptyBorder(5, 0, 5, 0));
 		panel.add(btnBackBorder);
 		btnBackBorder.add(btnQuayVe);

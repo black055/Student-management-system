@@ -30,6 +30,7 @@ import pojo.BangDiem;
 import pojo.Lop;
 import pojo.MonHoc;
 import pojo.SinhVien;
+import java.awt.Color;
 
 /**
  * view.MonHoc
@@ -137,10 +138,13 @@ public class PanelMonHoc extends JPanel {
 	}
 	
 	public PanelMonHoc() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(245, 245, 245));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

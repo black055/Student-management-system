@@ -93,14 +93,17 @@ public class PanelSuaDiem extends JPanel {
 	}
 	
 	public PanelSuaDiem() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JLabel titleContent = new JLabel("Sửa điểm");
 		titleContent.setFont(new Font("Tahoma", Font.BOLD, 24));
 		title.add(titleContent);
 		
 		JPanel form = new JPanel();
+		form.setBackground(new Color(245, 245, 245));
 		
 		JLabel lbSinhVien = new JLabel("SINH VI\u00CAN:");
 		lbSinhVien.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -147,8 +150,10 @@ public class PanelSuaDiem extends JPanel {
 		});
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(245, 245, 245));
 		
 		JPanel input = new JPanel();
+		input.setBackground(new Color(245, 245, 245));
 		GroupLayout gl_form = new GroupLayout(form);
 		gl_form.setHorizontalGroup(
 			gl_form.createParallelGroup(Alignment.TRAILING)
@@ -189,6 +194,7 @@ public class PanelSuaDiem extends JPanel {
 		input.setLayout(new FlowLayout(FlowLayout.CENTER, 20, 5));
 		
 		JPanel borderDiemGK = new JPanel();
+		borderDiemGK.setBackground(new Color(245, 245, 245));
 		borderDiemGK.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u0110i\u1EC3m GK", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		input.add(borderDiemGK);
 		
@@ -204,6 +210,7 @@ public class PanelSuaDiem extends JPanel {
 		txtDiemGK.setColumns(10);
 		
 		JPanel borderDiemCK = new JPanel();
+		borderDiemCK.setBackground(new Color(245, 245, 245));
 		borderDiemCK.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u0110i\u1EC3m CK", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		input.add(borderDiemCK);
 		
@@ -219,6 +226,7 @@ public class PanelSuaDiem extends JPanel {
 		txtDiemCK.setColumns(10);
 		
 		JPanel borderDiemKhac = new JPanel();
+		borderDiemKhac.setBackground(new Color(245, 245, 245));
 		borderDiemKhac.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u0110i\u1EC3m kh\u00E1c", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		input.add(borderDiemKhac);
 		
@@ -234,6 +242,7 @@ public class PanelSuaDiem extends JPanel {
 		txtDiemKhac.setColumns(10);
 		
 		JPanel borderDiemTong = new JPanel();
+		borderDiemTong.setBackground(new Color(245, 245, 245));
 		borderDiemTong.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "\u0110i\u1EC3m t\u1ED5ng", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		input.add(borderDiemTong);
 		
@@ -250,6 +259,7 @@ public class PanelSuaDiem extends JPanel {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
 		JPanel btnSubmitBorder = new JPanel();
+		btnSubmitBorder.setBackground(new Color(245, 245, 245));
 		FlowLayout flowLayout = (FlowLayout) btnSubmitBorder.getLayout();
 		flowLayout.setVgap(0);
 		flowLayout.setHgap(0);
@@ -282,6 +292,7 @@ public class PanelSuaDiem extends JPanel {
 		});
 		
 		JPanel btnBackBorder = new JPanel();
+		btnBackBorder.setBackground(new Color(245, 245, 245));
 		FlowLayout flowLayout_1 = (FlowLayout) btnBackBorder.getLayout();
 		flowLayout_1.setVgap(0);
 		flowLayout_1.setHgap(0);

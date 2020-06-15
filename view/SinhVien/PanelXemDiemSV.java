@@ -34,6 +34,7 @@ import java.awt.FlowLayout;
 import java.awt.Component;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.EmptyBorder;
+import java.awt.Color;
 
 /**
  * view.SinhVien
@@ -66,14 +67,17 @@ public class PanelXemDiemSV extends JPanel {
 	}
 	
 	public PanelXemDiemSV() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JLabel titleContent = new JLabel("Tra c\u1EE9u k\u1EBFt qu\u1EA3 h\u1ECDc t\u1EADp");
 		titleContent.setFont(new Font("Tahoma", Font.BOLD, 24));
 		title.add(titleContent);
 		
 		JPanel form = new JPanel();
+		form.setBackground(new Color(245, 245, 245));
 		
 		JLabel lblNewLabel = new JLabel("SINH VI\u00CAN:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -143,6 +147,7 @@ public class PanelXemDiemSV extends JPanel {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
 		JPanel btnSubmitBorder = new JPanel();
+		btnSubmitBorder.setBackground(new Color(245, 245, 245));
 		btnSubmitBorder.setBorder(new EmptyBorder(5, 0, 5, 0));
 		panel.add(btnSubmitBorder);
 		btnSubmitBorder.add(btnTraCuu);
@@ -169,6 +174,7 @@ public class PanelXemDiemSV extends JPanel {
 		});
 		
 		JPanel btnBackBorder = new JPanel();
+		btnBackBorder.setBackground(new Color(245, 245, 245));
 		btnBackBorder.setBorder(new EmptyBorder(5, 0, 5, 0));
 		panel.add(btnBackBorder);
 		btnBackBorder.add(btnQuayVe);

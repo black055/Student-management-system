@@ -52,9 +52,10 @@ public class PanelSinhVien extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelSinhVien() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
-		title.setBackground(Color.CYAN);
+		title.setBackground(new Color(245, 245, 245));
 		title.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
 		JLabel titleContent = new JLabel("Qu\u1EA3n l\u00FD sinh vi\u00EAn");
@@ -75,6 +76,7 @@ public class PanelSinhVien extends JPanel {
 		}
 		
 		JPanel center = new JPanel();
+		center.setBackground(new Color(245, 245, 245));
 		center.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Danh s\u00E1ch sinh vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		danhSach.setBorder(null);
 		danhSach.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -94,6 +96,7 @@ public class PanelSinhVien extends JPanel {
 		JScrollPane sp = new JScrollPane(danhSach);
 		
 		JPanel buttons = new JPanel();
+		buttons.setBackground(new Color(245, 245, 245));
 		
 		JButton btnThemSV = new JButton("Thêm sinh viên");
 		btnThemSV.addMouseListener(new MouseAdapter() {

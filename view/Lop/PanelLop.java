@@ -32,6 +32,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 /**
  * view.Lop
@@ -204,10 +205,13 @@ public class PanelLop extends JPanel {
 	}
 	
 	public PanelLop() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(245, 245, 245));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

@@ -27,6 +27,7 @@ import dao.SinhVienDAO;
 import pojo.BangDiem;
 import pojo.MonHoc;
 import pojo.SinhVien;
+import java.awt.Color;
 
 /**
  * view.SinhVien
@@ -60,14 +61,17 @@ public class PanelDKHP extends JPanel {
 	}
 	
 	public PanelDKHP() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JLabel titleContent = new JLabel("Đăng ký học phần");
 		titleContent.setFont(new Font("Tahoma", Font.BOLD, 24));
 		title.add(titleContent);
 		
 		JPanel form = new JPanel();
+		form.setBackground(new Color(245, 245, 245));
 		
 		JLabel lblNewLabel = new JLabel("SINH VI\u00CAN:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -104,6 +108,7 @@ public class PanelDKHP extends JPanel {
 		});
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(245, 245, 245));
 		GroupLayout gl_form = new GroupLayout(form);
 		gl_form.setHorizontalGroup(
 			gl_form.createParallelGroup(Alignment.LEADING)
@@ -137,6 +142,7 @@ public class PanelDKHP extends JPanel {
 		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		
 		JPanel btnSubmitBorder = new JPanel();
+		btnSubmitBorder.setBackground(new Color(245, 245, 245));
 		btnSubmitBorder.setBorder(new EmptyBorder(5, 0, 5, 0));
 		panel.add(btnSubmitBorder);
 		btnSubmitBorder.add(btnDangKy);
@@ -157,6 +163,7 @@ public class PanelDKHP extends JPanel {
 		});
 		
 		JPanel btnBackBorder = new JPanel();
+		btnBackBorder.setBackground(new Color(245, 245, 245));
 		btnBackBorder.setBorder(new EmptyBorder(5, 0, 5, 0));
 		panel.add(btnBackBorder);
 		btnBackBorder.add(btnQuayVe);

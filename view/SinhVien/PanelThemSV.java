@@ -49,9 +49,10 @@ public class PanelThemSV extends JPanel {
 	}
 	
 	public PanelThemSV() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
-		title.setBackground(Color.CYAN);
+		title.setBackground(new Color(245, 245, 245));
 		
 		JLabel titleContent = new JLabel("Th\u00EAm sinh vi\u00EAn");
 		titleContent.setBackground(Color.CYAN);
@@ -59,6 +60,7 @@ public class PanelThemSV extends JPanel {
 		title.add(titleContent);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(245, 245, 245));
 		
 		JLabel lbHoTen = new JLabel("H\u1ECC T\u00CAN:");
 		lbHoTen.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -78,11 +80,13 @@ public class PanelThemSV extends JPanel {
 		ButtonGroup buttons = new ButtonGroup();
 		
 		JRadioButton maleRadio = new JRadioButton("Nam");
+		maleRadio.setBackground(new Color(245, 245, 245));
 		maleRadio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		maleRadio.setSelected(true);
 		buttons.add(maleRadio);
 		
 		JRadioButton femaleRadio = new JRadioButton("N\u1EEF");
+		femaleRadio.setBackground(new Color(245, 245, 245));
 		femaleRadio.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		buttons.add(femaleRadio);
 		

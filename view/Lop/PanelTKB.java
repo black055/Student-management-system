@@ -23,6 +23,7 @@ import dao.LopDAO;
 import pojo.Lop;
 import pojo.MonHoc;
 import pojo.SinhVien;
+import java.awt.Color;
 
 /**
  * view.Lop
@@ -37,8 +38,10 @@ public class PanelTKB extends JPanel {
 	 * Create the panel.
 	 */
 	public PanelTKB() {
+		setBackground(new Color(245, 245, 245));
 		
 		JPanel title = new JPanel();
+		title.setBackground(new Color(245, 245, 245));
 		
 		JLabel lblLop = new JLabel("L\u1EDAP:");
 		lblLop.setFont(new Font("Tahoma", Font.PLAIN, 14));
