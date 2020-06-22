@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -68,28 +69,23 @@ public class PanelDoiMK extends JPanel {
 		title.setBackground(new Color(245, 245, 245));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-				.addComponent(title, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-				.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+				.addComponent(title, GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+				.addGroup(groupLayout.createSequentialGroup()
 					.addGap(59)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lbMatKhauHT)
-							.addGap(18)
-							.addComponent(txtPassword, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lbMatKhau)
-									.addGap(39))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lbXacNhan)
-									.addPreferredGap(ComponentPlacement.UNRELATED)))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtNewPassword, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
-								.addComponent(txtRePassword, GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))))
+							.addComponent(lbMatKhau)
+							.addGap(39))
+						.addComponent(lbMatKhauHT)
+						.addComponent(lbXacNhan))
+					.addGap(22)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(txtPassword, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+						.addComponent(txtNewPassword, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+						.addComponent(txtRePassword, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE))
 					.addGap(67))
 		);
 		groupLayout.setVerticalGroup(
@@ -106,13 +102,13 @@ public class PanelDoiMK extends JPanel {
 						.addComponent(lbMatKhau))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lbXacNhan)
-						.addComponent(txtRePassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtRePassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lbXacNhan))
 					.addGap(28)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(27, Short.MAX_VALUE))
+					.addContainerGap(35, Short.MAX_VALUE))
 		);
 		
 		JLabel titleContent = new JLabel("Đổi mật khẩu");
@@ -122,7 +118,7 @@ public class PanelDoiMK extends JPanel {
 		JButton btnSubmit = new JButton("Đổi mật khẩu");
 		btnSubmit.setEnabled(false);
 		
-		JLabel error = new JLabel("Vui l\u00F2ng \u0111\u0103ng nh\u1EADp \u0111\u1EC3 s\u1EED d\u1EE5ng ch\u01B0\u01A1ng tr\u00ECnh");
+		JLabel error = new JLabel("");
 		error.setForeground(Color.RED);
 		panel.add(error);
 		error.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -135,7 +131,7 @@ public class PanelDoiMK extends JPanel {
 					error.setText("Mật khẩu đã không trùng khớp với mật khẩu hiện tại");
 				}
 				else {
-					if (!txtNewPassword.getPassword().equals(txtRePassword.getPassword())) {
+					if (!Arrays.equals(txtNewPassword.getPassword(), txtRePassword.getPassword())) {
 						error.setText("Mật khẩu mới và mật khẩu xác nhận không trùng nhau");
 					}
 					else {

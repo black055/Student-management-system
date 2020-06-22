@@ -7,6 +7,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.text.BadLocationException;
 
 import QuanLySinhVien.MainClass.Main;
 import dao.BangDiemDAO;
@@ -27,6 +28,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.DropMode;
 
 /**
  * view.SinhVien
@@ -244,6 +246,13 @@ public class PanelThemSV extends JPanel {
 		txtHoTen.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				if (txtHoTen.getText().length() >= 30) {
+					try {
+						txtHoTen.setText(txtHoTen.getText(0, 30));
+					} catch (BadLocationException e1) {
+						e1.printStackTrace();
+					}
+				}
 				btnThemSV.setEnabled(validateForm());
 			}
 		});
@@ -251,6 +260,13 @@ public class PanelThemSV extends JPanel {
 		txtCMND.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				if (txtCMND.getText().length() >= 12) {
+					try {
+						txtCMND.setText(txtCMND.getText(0, 12));
+					} catch (BadLocationException e1) {
+						e1.printStackTrace();
+					}
+				}
 				btnThemSV.setEnabled(validateForm());
 			}
 		});
@@ -258,6 +274,13 @@ public class PanelThemSV extends JPanel {
 		txtMSSV.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
+				if (txtMSSV.getText().length() >= 8) {
+					try {
+						txtMSSV.setText(txtMSSV.getText(0, 8));
+					} catch (BadLocationException e1) {
+						e1.printStackTrace();
+					}
+				}
 				btnThemSV.setEnabled(validateForm());
 			}
 		});

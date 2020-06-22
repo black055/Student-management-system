@@ -30,7 +30,7 @@ import view.TrangChu.PanelTrangChu;
  * @Description ...
  */
 public class SinhVienDashboard extends JPanel {
-
+	private JPanel currentPanel = new JPanel();
 	/**
 	 * Create the panel.
 	 */
@@ -49,18 +49,29 @@ public class SinhVienDashboard extends JPanel {
 		trangChuLb.setForeground(Color.WHITE);
 		trangChuLb.setIcon(new ImageIcon("src\\icon\\home-icon.png"));
 		trangChuLb.setHorizontalAlignment(SwingConstants.LEFT);
-		trangChuLb.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		trangChuLb.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		trangChuDb.add(trangChuLb);
 		
 		trangChuDb.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
-				trangChuDb.setBackground(Color.GRAY);
+				trangChuDb.setBackground(Color.LIGHT_GRAY);
 				Main.setMainPanel(new PanelTrangChu());
+				currentPanel = trangChuDb;
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				trangChuDb.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (trangChuDb == currentPanel)
+					trangChuDb.setBackground(Color.LIGHT_GRAY);
+				else
+					trangChuDb.setBackground(Color.DARK_GRAY);
 			}
 		});
-		
 		JPanel xemDiemDb = new JPanel();
 		xemDiemDb.setLayout(new BorderLayout(0, 0));
 		
@@ -68,15 +79,27 @@ public class SinhVienDashboard extends JPanel {
 		xemDiemLb.setForeground(Color.WHITE);
 		xemDiemLb.setIcon(new ImageIcon("src\\icon\\course-icon.png"));
 		xemDiemLb.setHorizontalAlignment(SwingConstants.LEFT);
-		xemDiemLb.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		xemDiemLb.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		xemDiemDb.add(xemDiemLb);
 		
 		xemDiemDb.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
-				xemDiemDb.setBackground(Color.GRAY);
+				xemDiemDb.setBackground(Color.LIGHT_GRAY);
 				Main.setMainPanel(new PanelKetQuaHocTap(SinhVienDAO.thongTinSinhVien(Main.getTaiKhoan().getTenTK())));
+				currentPanel = xemDiemDb;
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				xemDiemDb.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (xemDiemDb == currentPanel)
+					xemDiemDb.setBackground(Color.LIGHT_GRAY);
+				else
+					xemDiemDb.setBackground(Color.DARK_GRAY);
 			}
 		});
 		

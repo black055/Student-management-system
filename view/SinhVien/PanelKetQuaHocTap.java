@@ -51,14 +51,6 @@ public class PanelKetQuaHocTap extends JPanel {
 		
 		JScrollPane sp = new JScrollPane();
 		
-		JButton btnQuayVe = new JButton("Quay v\u1EC1");
-		btnQuayVe.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Main.setMainPanel(new PanelLop());
-			}
-		});
-		btnQuayVe.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
 		JLabel lbName = new JLabel("Họ tên: " + sv.getTenSV());
 		lbName.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
@@ -71,10 +63,6 @@ public class PanelKetQuaHocTap extends JPanel {
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addContainerGap(506, Short.MAX_VALUE)
-					.addComponent(btnQuayVe, GroupLayout.PREFERRED_SIZE, 101, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
-				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblNewLabel)
 					.addGap(18)
@@ -82,8 +70,8 @@ public class PanelKetQuaHocTap extends JPanel {
 					.addGap(164)
 					.addComponent(lblNewLabel_1)
 					.addContainerGap(34, Short.MAX_VALUE))
-				.addComponent(sp, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
 				.addComponent(title, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
+				.addComponent(sp, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -95,10 +83,7 @@ public class PanelKetQuaHocTap extends JPanel {
 						.addComponent(lblNewLabel_1)
 						.addComponent(lbName))
 					.addGap(13)
-					.addComponent(sp, GroupLayout.DEFAULT_SIZE, 252, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(btnQuayVe, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-					.addGap(6))
+					.addComponent(sp, GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE))
 		);
 		
 		List<BangDiem> bangDiem = BangDiemDAO.ketQuaHocTap(sv.getMaSV());

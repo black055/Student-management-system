@@ -28,7 +28,7 @@ import view.TrangChu.PanelTrangChu;
  * @Description ...
  */
 public class GiaoVuDashboard extends JPanel {
-
+	private JPanel currentPanel = new JPanel();
 	/**
 	 * Create the panel.
 	 */
@@ -47,15 +47,27 @@ public class GiaoVuDashboard extends JPanel {
 		trangChuLb.setForeground(Color.WHITE);
 		trangChuLb.setIcon(new ImageIcon("src\\icon\\home-icon.png"));
 		trangChuLb.setHorizontalAlignment(SwingConstants.LEFT);
-		trangChuLb.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		trangChuLb.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		trangChuDb.add(trangChuLb);
 		
 		trangChuDb.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
-				trangChuDb.setBackground(Color.GRAY);
+				trangChuDb.setBackground(Color.LIGHT_GRAY);
 				Main.setMainPanel(new PanelTrangChu());
+				currentPanel = trangChuDb;
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				trangChuDb.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (trangChuDb == currentPanel)
+					trangChuDb.setBackground(Color.LIGHT_GRAY);
+				else
+					trangChuDb.setBackground(Color.DARK_GRAY);
 			}
 		});
 		
@@ -66,15 +78,27 @@ public class GiaoVuDashboard extends JPanel {
 		sinhVienLb.setForeground(Color.WHITE);
 		sinhVienLb.setIcon(new ImageIcon("src\\icon\\student-icon.png"));
 		sinhVienLb.setHorizontalAlignment(SwingConstants.LEFT);
-		sinhVienLb.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		sinhVienLb.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		sinhVienDb.add(sinhVienLb);
 		
 		sinhVienDb.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
-				sinhVienDb.setBackground(Color.GRAY);
+				sinhVienDb.setBackground(Color.LIGHT_GRAY);
 				Main.setMainPanel(new PanelSinhVien());
+				currentPanel = sinhVienDb;
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				sinhVienDb.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (sinhVienDb == currentPanel)
+					sinhVienDb.setBackground(Color.LIGHT_GRAY);
+				else
+					sinhVienDb.setBackground(Color.DARK_GRAY);
 			}
 		});
 		
@@ -85,15 +109,27 @@ public class GiaoVuDashboard extends JPanel {
 		lopLb.setForeground(Color.WHITE);
 		lopLb.setIcon(new ImageIcon("src\\icon\\class-icon.png"));
 		lopLb.setHorizontalAlignment(SwingConstants.LEFT);
-		lopLb.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		lopLb.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		lopDb.add(lopLb);
 		
 		lopDb.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
-				lopDb.setBackground(Color.GRAY);
+				lopDb.setBackground(Color.LIGHT_GRAY);
 				Main.setMainPanel(new PanelLop());
+				currentPanel = lopDb;
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				lopDb.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (lopDb == currentPanel)
+					lopDb.setBackground(Color.LIGHT_GRAY);
+				else
+					lopDb.setBackground(Color.DARK_GRAY);
 			}
 		});
 		
@@ -104,15 +140,27 @@ public class GiaoVuDashboard extends JPanel {
 		monHocLb.setForeground(Color.WHITE);
 		monHocLb.setIcon(new ImageIcon("src\\icon\\course-icon.png"));
 		monHocLb.setHorizontalAlignment(SwingConstants.LEFT);
-		monHocLb.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		monHocLb.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		monHocDb.add(monHocLb);
 		
 		monHocDb.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				setDefaultDashboardColor();
-				monHocDb.setBackground(Color.GRAY);
+				monHocDb.setBackground(Color.LIGHT_GRAY);
 				Main.setMainPanel(new PanelMonHoc());
+				currentPanel = monHocDb;
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				monHocDb.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				if (monHocDb == currentPanel)
+					monHocDb.setBackground(Color.LIGHT_GRAY);
+				else
+					monHocDb.setBackground(Color.DARK_GRAY);
 			}
 		});
 		
@@ -138,7 +186,8 @@ public class GiaoVuDashboard extends JPanel {
 					.addContainerGap(86, Short.MAX_VALUE))
 		);
 		
-		trangChuDb.setBackground(Color.GRAY);
+		currentPanel = trangChuDb;
+		trangChuDb.setBackground(Color.LIGHT_GRAY);
 		sinhVienDb.setBackground(Color.DARK_GRAY);
 		monHocDb.setBackground(Color.DARK_GRAY);
 		lopDb.setBackground(Color.DARK_GRAY);

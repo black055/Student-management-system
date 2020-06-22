@@ -61,7 +61,7 @@ public class PanelLop extends JPanel {
 			try {
 				String row = bf.readLine();
 				row = bf.readLine();
-				if (!row.contentEquals("STT,MSSV,Họ tên, Giới tính,CMND"))
+				if (!row.contentEquals("STT,MSSV,Họ tên,Giới tính,CMND"))
 					return false;
 				row = bf.readLine();
 				do {

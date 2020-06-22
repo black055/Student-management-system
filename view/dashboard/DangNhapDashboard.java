@@ -42,7 +42,7 @@ public class DangNhapDashboard extends JPanel {
 		trangChuLb.setForeground(Color.WHITE);
 		trangChuLb.setIcon(new ImageIcon("src\\icon\\home-icon.png"));
 		trangChuLb.setHorizontalAlignment(SwingConstants.LEFT);
-		trangChuLb.setFont(new Font("Times New Roman", Font.PLAIN, 18));
+		trangChuLb.setFont(new Font("SansSerif", Font.PLAIN, 18));
 		trangChuDb.add(trangChuLb);
 		
 		GroupLayout gl_dashboardContainer = new GroupLayout(this);
@@ -58,8 +58,17 @@ public class DangNhapDashboard extends JPanel {
 					.addPreferredGap(ComponentPlacement.UNRELATED))
 		);
 		
-		trangChuDb.setBackground(Color.GRAY);
-		
+		trangChuDb.setBackground(Color.LIGHT_GRAY);
+		trangChuDb.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				trangChuDb.setBackground(Color.GRAY);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) {
+				trangChuDb.setBackground(Color.LIGHT_GRAY);
+			}
+		});
 		this.setLayout(gl_dashboardContainer);
 	}
 

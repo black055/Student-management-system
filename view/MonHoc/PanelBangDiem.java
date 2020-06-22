@@ -167,7 +167,7 @@ public class PanelBangDiem extends JPanel {
 					}
 				));
 				
-				float tyLe =(float) passed/result.size()*100;
+				int tyLe =(int) ((float) passed/result.size()*100);
 				tyLeQuaMon.setText("ĐẬU: " + String.valueOf(tyLe) + "%\t RỚT: " + String.valueOf(100 - tyLe) + "%");
 			}
 		});
