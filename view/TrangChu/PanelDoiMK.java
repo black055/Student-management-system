@@ -128,7 +128,7 @@ public class PanelDoiMK extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				
 				if (!String.copyValueOf(txtPassword.getPassword()).contentEquals(Main.getTaiKhoan().getMatKhau())) {
-					error.setText("Mật khẩu đã không trùng khớp với mật khẩu hiện tại");
+					error.setText("Mật khẩu đã nhập không trùng khớp với mật khẩu hiện tại");
 				}
 				else {
 					if (!Arrays.equals(txtNewPassword.getPassword(), txtRePassword.getPassword())) {
